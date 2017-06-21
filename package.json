@@ -1,0 +1,14 @@
+{
+  "name": "browsercommander",
+  "version": "1.0.0",
+  "description": "Alexa skill to control your browser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "54chi",
+  "license": "ISC",
+  "dependencies": {
+    "opn": "^5.1.0"
+  }
+}
