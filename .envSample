@@ -1,0 +1,9 @@
+HOMEPAGE_URL=http://54chi.com
+JIRA_URL=https://test.atlassian.net/secure/RapidBoard.jspa?rapidView=55
+JIRA_URL_TICKETBASE=https://test.atlassian.net/browse/
+JIRA_USERNAME=test@email.com
+JIRA_PASSWORD=supersecurepassword
+CONFLUENCE_URL=https://test.atlassian.net/wiki/dosearchsite.action?cql=siteSearch+~+%22
+CONFLUENCE_SPACES=%22MySpace%22
+SLACK_URL=https://test.slack.com/
+PLAYLIST_URL=https://www.youtube.com/watch?v=gBDZKJtcrdc&list=PLpvWJ6XFE9__zndCCT76TYtmjaKA0py7K

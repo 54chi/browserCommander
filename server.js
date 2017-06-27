@@ -1,49 +1,8 @@
-/* PSEUDOCODE
-Have a REST server in NodeJS
-NodeJS has a simple endpoint that identifies the processes to run
-
-Commands:
-- Open slack
-- Open slack channel xxx
-- Post xxx in channel
-- Search answerhub
-- Set a reminder on slack
-- Add callbacks?
-
-*/
-
 /*
-ACTION SEQUENCE
-driver.actions().
-              click().
-              doubleClick().
-              dragAndDrop().
-              keyDown().
-              keyUp().
-              mouseDown().
-              mouseMove().
-              mouseUp().
-              sendKeys().
-              perform()
-
-TOUCH SEQUENCE:
-driver.touchActions().
-              doubleTap().
-              flick().
-              flickElement().
-              longPress().
-              move().
-              release().
-              scrollFromElement().
-              tap().
-              tapAndHold(.)
-              perform();
-
-driver.findElement(By.id/By.className/By.tagName/By.name/By.css/By.xpath).
-              getText()
-              click()
+  Browser Commander
+  By 54chi - Feb 2017
+  Remote control your browser via REST services
 */
-
 require('dotenv').config();
 var express = require('express');
 var app = express();
@@ -87,37 +46,33 @@ var JiraLogin = function(driver){
 }
 
 // Start Custom Browser Commands //
-app.get('/apps/homepage', function(req, res) {
-  // opens HP
-  driver.get(process.env.HOMEPAGE_URL);
-  res.send([{action: 'apps/homepage', url: process.env.HOMEPAGE_URL, requestTime: req.requestTime}]);
-});
-app.get('/apps/jira', function(req, res) {
-  // opens JIRA
-  driver.get(process.env.JIRA_URL);
-  //  driver.sleep(timeout);
-  JiraLogin(driver);
-  res.send([{action: 'apps/jira', url: process.env.JIRA_URL, requestTime: req.requestTime}]);
-});
-app.get('/apps/jira/:id', function(req, res) {
-  driver.get(process.env.JIRA_URL_TICKETBASE+req.params.id);
-  JiraLogin(driver);
-  res.send([{action: 'apps/jira/:id', url: process.env.JIRA_URL_TICKETBASE+req.params.id, requestTime: req.requestTime}]);
-});
-app.get('/apps/confluence/:searchText', function(req, res) {
-  driver.get(process.env.CONFLUENCE_URL+encodeURI(req.params.searchText)+"%22+and+space+in+("+process.env.CONFLUENCE_SPACES+")");
-  JiraLogin(driver);
-  res.send([{action: '/apps/confluence/:searchText', url: process.env.CONFLUENCE_URL+encodeURI(req.params.searchText)+"%22+and+space+in+("+process.env.CONFLUENCE_SPACES+")", requestTime: req.requestTime}]);
-});
-app.get('/apps/youtube', function(req, res) {
-  driver.get(process.env.PLAYLIST_URL).then(()=>{
+  app.get('/apps/homepage', function(req, res) {
+    // opens HP
+    driver.get(process.env.HOMEPAGE_URL);
+    res.send([{action: 'apps/homepage', url: process.env.HOMEPAGE_URL, requestTime: req.requestTime}]);
+  });
+  app.get('/apps/jira', function(req, res) {
+    // opens JIRA
+    driver.get(process.env.JIRA_URL);
+    //  driver.sleep(timeout);
+    JiraLogin(driver);
+    res.send([{action: 'apps/jira', url: process.env.JIRA_URL, requestTime: req.requestTime}]);
+  });
+  app.get('/apps/jira/:id', function(req, res) {
+    driver.get(process.env.JIRA_URL_TICKETBASE+req.params.id);
+    JiraLogin(driver);
+    res.send([{action: 'apps/jira/:id', url: process.env.JIRA_URL_TICKETBASE+req.params.id, requestTime: req.requestTime}]);
+  });
+  app.get('/apps/confluence/:searchText', function(req, res) {
+    driver.get(process.env.CONFLUENCE_URL+encodeURI(req.params.searchText)+"%22+and+space+in+("+process.env.CONFLUENCE_SPACES+")");
+    JiraLogin(driver);
+    res.send([{action: '/apps/confluence/:searchText', url: process.env.CONFLUENCE_URL+encodeURI(req.params.searchText)+"%22+and+space+in+("+process.env.CONFLUENCE_SPACES+")", requestTime: req.requestTime}]);
+  });
+  app.get('/apps/youtube', function(req, res) {
+    driver.get(process.env.PLAYLIST_URL);
     driver.findElement(By.className("ytp-fullscreen-button")).click();
-//    var actions = driver.actions();
-//    actions.sendKeys("F").perform();
-  }).catch(console.log.bind(console));
-  res.send([{action: 'apps/youtube', url: process.env.PLAYLIST_URL, requestTime: req.requestTime}]);
-});
-
+    res.send([{action: 'apps/youtube', url: process.env.PLAYLIST_URL, requestTime: req.requestTime}]);
+  });
 // End Custom Browser commands //
 
 // Start General Browser Commands //
