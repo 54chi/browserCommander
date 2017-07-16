@@ -4,11 +4,15 @@
   "description": "Alexa skill to control your browser",
   "main": "app.js",
   "scripts": {
+    "skill" : "node index",
+    "server" : "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "54chi",
   "license": "ISC",
   "dependencies": {
+    "alexia": "^2.4.0",
+    "hapi": "^16.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "selenium-webdriver": "^3.4.0"
